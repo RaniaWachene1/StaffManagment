@@ -5,23 +5,24 @@ package com.example.demo.payload.request.response;
 import java.util.List;
 
 public class UserInfoResponse {
-    private Long id;
+    private String id;
+
     private String username;
     private String email;
     private List<String> roles;
 
     public UserInfoResponse(String id, String username, String email, List<String> roles) {
-        this.id = Long.valueOf(id);
+        this.id = id;
         this.username = username;
         this.email = email;
         this.roles = roles;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

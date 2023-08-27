@@ -1,0 +1,407 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  
+  
+  
+  <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="index.html"><img src="/assets/back/images/logo.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/back/images/logo-mini.svg" alt="logo"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+     
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close typcn typcn-delete-outline"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>
+              Light
+            </div>
+            <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+              Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              
+              <div class="tiles default border"></div>
+            </div>
+          </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <div class="d-flex sidebar-profile">
+              <div class="sidebar-profile-image">
+              
+              </div>
+            </div>
+            <div class="nav-search">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Type to search..." aria-label="search" aria-describedby="search">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="search">
+                    <i class="typcn typcn-zoom"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <p class="sidebar-menu-title">Dash menu</p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+              <i class="typcn typcn-device-desktop menu-icon"></i>
+              <span class="menu-title">Dashboard <span class="badge badge-primary ml-3"></span></span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="form" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+              <i class="typcn typcn-briefcase menu-icon"></i>
+              <span class="menu-title">Add Information</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="list" aria-expanded="false" aria-controls="form">
+              <i class="typcn typcn-film menu-icon"></i>
+              <span class="menu-title">List</span>
+          
+            </a>
+            
+          </li>
+        </ul>
+       
+      </nav>
+      
+        <!-- partial -->
+        <div class="main-panel">
+          
+          <div class="content-wrapper">
+            <div class="   " style="width: 1000px; height:200px;">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-wrap justify-content-between">
+                    <h4 class="card-title mb-3">Filters</h4>
+                  </div>
+                  <div class="input-container">
+                    <div class="date">
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Select a week" [formControl]="selectedWeekControl" />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    
+                    
+                    <div class="name">
+                      <mat-form-field>
+                        <mat-label>Select First Name:</mat-label>
+                        <mat-select [formControl]="selectedFirstNameControl" (selectionChange)="updateTotalVisitors()">
+                          <mat-option value="" disabled>Select a first name</mat-option>
+                          <mat-option *ngFor="let name of firstNamesList" [value]="name">{{ name }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  
+                  <div>
+                  </div>
+                  
+                 </div>
+                            
+               
+              </div>
+            </div>
+           
+            
+
+            <div class="row  mt-3">
+              
+              <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <!-- dash.component.html -->
+                    <div class="d-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-center">
+                        <h4 class="card-title mb-0 mr-2">Total Number : </h4>
+                      </div>
+                      <h4 class="card-title mb-0 mr-2">{{ totalEmployees }}</h4>
+                      <img src="/assets/back/images/employees.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
+                    </div>
+                  
+              
+                
+              
+            
+              
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="d-flex justify-content-between mb-md-5 mt-3">
+                              
+
+
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <!-- dash.component.html -->
+                    <div class="d-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-center">
+                        <h4 class="card-title mb-0 mr-2"> Number V : </h4>
+                      </div>
+                      <h4 class="card-title mb-0 mr-2">{{ visitorCountByWeek }}</h4>
+                      <img src="/assets/back/images/employees.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="d-flex justify-content-between mb-md-5 mt-3">
+                              
+
+
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <!-- dash.component.html -->
+                    <div class="d-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-center">
+                        <h4 class="card-title mb-0 mr-2"> Number V : </h4>
+                      </div>
+                      <h4 class="card-title mb-0 mr-2">{{ visitorCountByWeek }}</h4>
+                      <img src="/assets/back/images/employees.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="d-flex justify-content-between mb-md-5 mt-3">
+                              
+
+
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <!-- dash.component.html -->
+                    <div class="d-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-center">
+                        <h4 class="card-title mb-0 mr-2"> Number V : </h4>
+                      </div>
+                      <h4 class="card-title mb-0 mr-2">{{ visitorCountByWeek }}</h4>
+                      <img src="/assets/back/images/employees.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="d-flex justify-content-between mb-md-5 mt-3">
+                              
+
+
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="row">
+             
+              <div class="col-xl-6 d-flex grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="card-title mb-3">Attendance</h4>
+                      <button type="button" class="btn btn-sm btn-light">Month</button>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="chart-container">
+                          <canvas baseChart
+                          [data]="barChartData"
+                          [options]="barChartOptions"
+                          [plugins]="barChartPlugins"
+                          [legend]="barChartLegend"
+                          [type]="'bar'">
+                          
+                  </canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-xl-6 d-flex grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="card-title mb-3">S</h4>
+                      <button type="button" class="btn btn-sm btn-light">Month</button>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="chart-container">
+                          <canvas baseChart
+                                  [datasets]="lineChartData"
+                                  [labels]="lineChartLabels"
+                                  [options]="lineChartOptions"
+                                  [legend]="lineChartLegend"
+                                  [type]="lineChartType">
+                          </canvas>
+                        </div>
+                        
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="col-xl-6 d-flex grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="card-title mb-3">Sales Analytics</h4>
+                      <button type="button" class="btn btn-sm btn-light">Month</button>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="chart-container">
+                          <canvas id="doughnutChart" baseChart width="400" height="200"
+                          [datasets]="pieChartData"
+                          [labels]="pieChartLabels"
+                          [type]="pieChartType" 
+                          [options]="pieChartOptions"
+                          [plugins]="pieChartPlugins"
+                          [legend]="pieChartLegend">
+                          </canvas>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+
+
+              <div class="col-xl-6 d-flex grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="card-title mb-3">Sales Analytics</h4>
+                      <button type="button" class="btn btn-sm btn-light">Month</button>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="chart-container">
+                          <canvas id="doughnutChart" baseChart width="400" height="200"
+                          [datasets]="pieChartData"
+                          [labels]="pieChartLabels"
+                          [type]="pieChartType" 
+                          [options]="pieChartOptions"
+                          [plugins]="pieChartPlugins"
+                          [legend]="pieChartLegend">
+                          </canvas>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            
+              <div class="col-xl-6 d-flex grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="card-title mb-3">Distribution of employees By Area :</h4>
+                      
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="chart-container">
+                          
+                          <canvas baseChart width="400" height="200"
+                          [labels]="doughnutChartLabels"
+                          [datasets]="doughnutChartDatasets"
+                          [options]="doughnutChartOptions"
+                          [legend]="true"
+                          [type]="'doughnut'">
+                  </canvas>
+                         
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+   
+    <!-- container-scroller -->
+    <!-- base:js -->
+   
+  

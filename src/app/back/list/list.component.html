@@ -1,0 +1,192 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  
+  
+  
+  <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="index.html"><img src="/assets/back/images/logo.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/back/images/logo-mini.svg" alt="logo"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+     
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close typcn typcn-delete-outline"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>
+              Light
+            </div>
+            <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+              Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              
+              <div class="tiles default border"></div>
+            </div>
+          </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <div class="d-flex sidebar-profile">
+              <div class="sidebar-profile-image">
+              
+              </div>
+            </div>
+            <div class="nav-search">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Type to search..." aria-label="search" aria-describedby="search">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="search">
+                    <i class="typcn typcn-zoom"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <p class="sidebar-menu-title">Dash menu</p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+              <i class="typcn typcn-device-desktop menu-icon"></i>
+              <span class="menu-title">Dashboard <span class="badge badge-primary ml-3"></span></span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="form" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+              <i class="typcn typcn-briefcase menu-icon"></i>
+              <span class="menu-title">Add Information</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="list" aria-expanded="false" aria-controls="form">
+              <i class="typcn typcn-film menu-icon"></i>
+              <span class="menu-title">List</span>
+          
+            </a>
+            
+          </li>
+        </ul>
+       
+      </nav>
+      
+        <!-- partial -->
+        <div class="main-panel">
+          
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Striped Table</h4>
+                    
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>
+                              User
+                            </th>
+                            <th>
+                              Name
+                            </th>
+                            <th>
+                              Birth Date
+                            </th>
+                            <th>
+                              Adress
+                            </th>
+                            <th>
+                              Email
+                            </th>
+                           
+                              <th>
+                                phone
+                              </th>
+                              <th>
+                                hire date
+                              </th>
+                              
+<th>
+    Zone
+  </th><th>
+    Action
+  </th>
+                          </tr>
+                        </thead>
+                       <!-- ... Your existing HTML code ... -->
+                       <tbody>
+                        <tr *ngFor="let member of members">
+                          <td class="py-1">
+                            <img [src]="member.image" alt="image" />
+                          </td>
+                          <td>
+                            {{ member.firstName }} {{ member.lastName }}
+                          </td>
+                          <td>
+                            {{ member.birthday }}
+                          </td>
+                          <td>
+                            {{ member.address }}
+                          </td>
+                          <td>
+                            {{ member.email }}
+                          </td>
+                          <td>
+                            {{ member.phone }}
+                          </td>
+                          <td>
+                            {{ member.hireDate}}
+                          </td>
+                          <td>
+                            {{ member.zone }}
+                          </td>
+                          <td>
+                            <button (click)="editMember(member)">Edit</button>
+                            <button (click)="deleteMember(member)">Delete</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                      
+  
+  <!-- ... Rest of your HTML code ... -->
+  
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+   
+    <!-- container-scroller -->
+    <!-- base:js -->
+   
+  

@@ -2,7 +2,7 @@
 
 .sidebar {
   min-height: calc(100vh - #{$navbar-height});
-  background: $sidebar-dark-bg;
+  background: #c1a0fe;
   font-family: $type1;
   font-weight: 300;
   padding: 0;
@@ -77,7 +77,7 @@
         }
         &:nth-child(2) a {
           &:before {
-            background: theme-color(primary);
+            background: #c1a0fe;
           }
         }
         &:nth-child(3) a {
@@ -209,7 +209,7 @@
         &:hover {
           > .nav-link {
             background: $sidebar-dark-menu-hover-bg;
-            color: $sidebar-dark-menu-hover-color;                                    
+            color: #c1a0fe;                                    
           }
         }
       }
@@ -252,10 +252,10 @@
           height: auto;
           border-top: 0;
           &:hover {
-            color: $sidebar-dark-submenu-hover-color;
+            color:#c1a0fe;
           }
           &.active {
-            color: $sidebar-dark-submenu-active-color;
+            color:#c1a0fe;
             background: transparent;
           }
         }
@@ -353,8 +353,8 @@
         > .nav-item {
           &:hover {
             > .nav-link {
-              background: $sidebar-light-menu-hover-bg;
-              color: $sidebar-light-menu-hover-color;                                    
+              background: #c1a0fe;
+              color: #c1a0fe;                                    
             }
           }
         }
@@ -364,18 +364,18 @@
           .nav-link {
             color: $sidebar-light-submenu-color;
             &:before {
-              color: lighten($sidebar-light-submenu-color, 10%);
+              color: lighten(#c1a0fe, 10%);
             }
             &.active {
-              color: $sidebar-light-menu-active-color;
-              background: transparent;
+              color: #c1a0fe;
+              background: #c1a0fe;
             }
             &:hover {
-              color: $sidebar-light-submenu-hover-color;
+              color: #c1a0fe;
             }
           }
           &:hover {
-            background: transparent;
+            background: #c1a0fe;
           }
         }
       }

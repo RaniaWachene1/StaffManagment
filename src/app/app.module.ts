@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module'; // Import the AppRoutingModule
+import { AppRoutingModule } from './app-routing.module'; 
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './back/login/login.component';
@@ -9,6 +9,8 @@ import { BackModule } from './back/back.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import {  ThemeService } from 'ng2-charts';
+
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
@@ -16,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -36,9 +39,9 @@ import { CommonModule } from '@angular/common';
     MatDatepickerModule,
     MatNativeDateModule,
     MomentDateModule,
-    FormsModule,CommonModule,MatDialogModule
+    FormsModule,CommonModule,MatDialogModule,ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,20 +7,26 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="/assets/back/images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/back/images/logo-mini.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo" href="index.html">
+            <div style="display: flex; align-items: center;">
+              <img src="/assets/back/images/TeamTrack1.png" style="width: 90px; margin-bottom: 20px;" alt="logo">
+              <h1 style="margin-left: 10px; color: #7A45B1; margin-bottom: 20px;">TeamTrack</h1>
+            </div>
+          </a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/back/images/TeamTrack1.png" alt="logo"/></a>
+
           <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
         </div>
      
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-      
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="typcn typcn-th-menu"></span>
-          </button>
-        </div>
-      </nav>
+            <button class="btn btn-primary mr-2" style="background-color: #9155fd; border-color: #9155fd; border-radius: 12px; width: fit-content;" (click)="logout()">Logout</button>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="typcn typcn-th-menu"></span>
+            </button>
+          </div>
+        </nav>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
@@ -96,12 +102,13 @@
         <!-- partial -->
         <div class="main-panel">
           
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
+            <div class="col-lg-12 grid-margin stretch-card"  style="background-color: #f4f5fa;">
+                <div class="card"style="margin-top: 50px; margin-left: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px;">
                   <div class="card-body">
-                    <h4 class="card-title">Striped Table</h4>
-                    
+                    <h4 class="card-title" style="font-size: x-large;text-align: center; "> List of personal information</h4>
+                    <br>
                     <div class="table-responsive">
+
                       <table class="table table-striped">
                         <thead>
                           <tr>
@@ -137,11 +144,13 @@
                         </thead>
                        <!-- ... Your existing HTML code ... -->
                        <tbody>
+                        
                         <tr *ngFor="let member of members">
                           <td class="py-1">
-                            <img [src]="member.image" alt="image" />
-                          </td>
-                          <td>
+                           
+                            <img [src]="getImageUrl(member.image)" height="100" alt="Member Image" *ngIf="member.image">
+
+                            <td>
                             {{ member.firstName }} {{ member.lastName }}
                           </td>
                           <td>
@@ -163,30 +172,41 @@
                             {{ member.zone }}
                           </td>
                           <td>
-                            <button (click)="editMember(member)">Edit</button>
-                            <button (click)="deleteMember(member)">Delete</button>
-                          </td>
+                            <div>
+                            <button (click)="editMember(member)"  style="background-color:white; border-color: #9155fd;border-radius: 2px; width: fit-content;">Edit</button>
+                        </div>
+                          <br>
+                    <div>
+                          
+                        <button (click)="deleteMember(member)" style="background-color:white; border-color: #9155fd;border-radius: 2px; width: fit-content;">Delete</button>
+                    </div> 
+                    </td>
                         </tr>
                       </tbody>
                       
   
-  <!-- ... Rest of your HTML code ... -->
   
                       </table>
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                          <li class="page-item" [class.disabled]="currentPage === 1">
+                            <!-- ... Previous page button ... -->
+                          </li>
+                          <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+                            <!-- ... Page number buttons ... -->
+                          </li>
+                          <li class="page-item" [class.disabled]="currentPage === totalPages">
+                            <!-- ... Next page button ... -->
+                          </li>
+                        </ul>
+                      </nav>
                     </div>
                   </div>
                 </div>
               </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          
-          <!-- partial -->
+       
         </div>
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
-   
-    <!-- container-scroller -->
-    <!-- base:js -->
+  
    
   

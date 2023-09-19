@@ -35,10 +35,6 @@
 }
 .input-container {
   display: flex;
-  align-items: center; /* Align items vertically in the center */
+  align-items: center; 
 }
 
-.date,
-.name {
-  margin-right: 20px; /* Add some space between the two elements */
-}

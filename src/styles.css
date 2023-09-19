@@ -1,3 +1,14 @@
+
+@import 'ngx-toastr/toastr';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
+.nav-item a.nav-link:hover {
+    background-color: #f4f5fa; /* Change this to your desired hover color */
+    color: #f10b0b; /* Change this to the text color you want on hover */
+  }
+
+
 .multiselect-dropdown .dropdown-btn {
     display: inline-block;
     border: 1px solid #cf2020;
@@ -17,3 +28,9 @@
     
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ 
+  
+  
+
+  

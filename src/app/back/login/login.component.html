@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>CelestialUI Admin</title>
+  <title> Admin</title>
   <!-- base:css -->
   <link rel="stylesheet" href="/assets/back/vendors/typicons.font/font/typicons.css">
   <link rel="stylesheet" href="/assets/back/vendors/css/vendor.bundle.base.css">
@@ -24,27 +24,72 @@
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5 rounded-lg shadow-lg"> <!-- Added classes for styling -->
               <div class="brand-logo">
-                <img src="/assets/back/images/logo.svg" alt="logo">
+                <div style="display: flex; align-items: center;">
+                  <img src="/assets/back/images/TeamTrack1.png" style="width: 50px; margin-left: 70px;" alt="logo">
+                  <h1 style="margin-left: 10px; color: #7A45B1;">TeamTrack</h1>
+                </div>
+                
               </div>
               
               <h4>Hello! Let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" (ngSubmit)="onSubmit()" id="loginForm">
                 <div class="form-group">
-                  <input type="text" [(ngModel)]="username" class="form-control form-control-lg" id="username" name="username" required placeholder="Username">
+                  <input
+                    type="text"
+                    [(ngModel)]="username"
+                    class="form-control form-control-lg"
+                    id="username"
+                    name="username"
+                    required
+                    placeholder="Username"
+                    style="border-radius: 12px;"
+                  />
+                  <div
+                    *ngIf="loginForm?.get('username')?.hasError('required') && loginForm?.get('username')?.touched"
+                    class="text-danger"
+                  >
+                    Username is required.
+                  </div>
                 </div>
                 <div class="form-group">
-                  <input type="password" [(ngModel)]="password" class="form-control form-control-lg" placeholder="Password" id="password" name="password" required>
+                  <input
+                    type="password"
+                    [(ngModel)]="password"
+                    class="form-control form-control-lg"
+                    placeholder="Password"
+                    id="password"
+                    name="password"
+                    required
+                    style="border-radius: 12px;"
+                  />
+                  <div
+                    *ngIf="loginForm?.get('password')?.hasError('required') && loginForm?.get('password')?.touched"
+                    class="text-danger"
+                  >
+                    Password is required.
+                  </div>
                 </div>
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                  <button
+                    type="submit"
+                    class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                    style="background-color: #9155fd; border-color: #9155fd; border-radius: 12px; width: 320px;"
+                  >
+                    SIGN IN
+                  </button>
                 </div>
                 <div *ngIf="loginError" class="text-danger mt-3">
                   Invalid username or password.
                 </div>
+                <!-- Additional instructions -->
+                <div class="text-muted mt-3">
+                  Please fill in all required fields.
+                </div>
               </form>
+              
             </div>
           </div>
         </div>

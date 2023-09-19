@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit',
@@ -11,7 +12,8 @@ export class EditComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<EditComponent>
+    public dialogRef: MatDialogRef<EditComponent>,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {

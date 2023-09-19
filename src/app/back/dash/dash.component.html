@@ -7,15 +7,21 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="/assets/back/images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/back/images/logo-mini.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo" href="index.html">
+            <div style="display: flex; align-items: center;">
+              <img src="/assets/back/images/TeamTrack1.png" style="width: 90px; margin-bottom: 20px;" alt="logo">
+              <h1 style="margin-left: 10px; color: #7A45B1; margin-bottom: 20px;">TeamTrack</h1>
+            </div>
+          </a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"> <img src="/assets/back/images/TeamTrack1.png" style="width: 50px;" alt="logo">
+          </a>
           <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
         </div>
      
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-      
+          <button class="btn btn-primary mr-2" style="background-color: #9155fd; border-color: #9155fd; border-radius: 12px; width: fit-content;" (click)="logout()">Logout</button>
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="typcn typcn-th-menu"></span>
           </button>
@@ -42,6 +48,7 @@
               <div class="tiles success"></div>
               
               <div class="tiles default border"></div>
+              
             </div>
           </div>
         </div>
@@ -89,53 +96,122 @@
             </a>
             
           </li>
+          
+
         </ul>
        
       </nav>
       
         <!-- partial -->
-        <div class="main-panel">
+        <div class="main-panel" style="background-color: #f4f5fa;" >
           
-          <div class="content-wrapper">
-            <div class="   " style="width: 1000px; height:200px;">
+          <div class="content-wrapper" style="background-color: #f4f5fa;border-radius: 12px;" >
+         
+            <div class="   " style="width: 1030px; height:220px;border-radius: 20px;">
               <div class="card">
-                <div class="card-body">
+                <div class="card-body"style="border-radius: 20px;">
+                  
+
                   <div class="d-flex flex-wrap justify-content-between">
                     <h4 class="card-title mb-3">Filters</h4>
                   </div>
+                    <div class="input-container">
+                      <div class="date1 col-xl-3 " >
+                        <mat-form-field>
+                          <mat-label>Select Year:</mat-label>
+                          <mat-select [formControl]="selectedYearControl" >
+                            <mat-option value="" disabled> Year</mat-option>
+                            <mat-option *ngFor="let year of yearList" [value]="year">{{ year }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="date2 col-xl-3 " >
+                        <mat-form-field>
+                          <mat-label>Select Month:</mat-label>
+                          <mat-select [formControl]="selectedMonthControl" >
+                            <mat-option value="" disabled> Month</mat-option>
+                            <mat-option *ngFor="let month of monthList" [value]="month">{{ month }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="date3 col-xl-3 " >
+                        <mat-form-field>
+                          <mat-label>Select Week:</mat-label>
+                          <mat-select [formControl]="selectedWeekC " >
+                            <mat-option value="" disabled> Week</mat-option>
+                            <mat-option *ngFor="let week of weeksList" [value]="week">{{ week }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="date3 col-xl-3 ">
+                        <mat-form-field>
+                          <mat-label>Select Hour:</mat-label>
+                          <mat-select [formControl]="selectedHourC ">
+                            <mat-option value="" disabled> Hour</mat-option>
+                            <mat-option *ngFor="let hour of hourList" [value]="hour">{{ hour }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                     
+                   
+                  </div>
                   <div class="input-container">
-                    <div class="date">
-                      <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="Select a week" [formControl]="selectedWeekControl" />
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-                    
-                    
-                    <div class="name">
+                    <div class="name col-xl-3 " >
                       <mat-form-field>
                         <mat-label>Select First Name:</mat-label>
-                        <mat-select [formControl]="selectedFirstNameControl" (selectionChange)="updateTotalVisitors()">
+                        <mat-select [formControl]="selectedFirstNameControl" >
                           <mat-option value="" disabled>Select a first name</mat-option>
                           <mat-option *ngFor="let name of firstNamesList" [value]="name">{{ name }}</mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>
+                    <div class="area  ">
+                      <mat-form-field>
+                        <mat-label>Select Area:</mat-label>
+                        <mat-select [formControl]="selectedAreaControl" >
+                          <mat-option value="" disabled> Area</mat-option>
+                          <mat-option *ngFor="let area of areaList" [value]="area">{{ area }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                            
+                    <div class="hourName">
+                      <mat-form-field>
+                        <mat-label>Select hour Name:</mat-label>
+                        <mat-select [formControl]="selectedHourNameControl" >
+                          <mat-option value="" disabled>Select HourName</mat-option>
+                          <mat-option *ngFor="let hourName of hourNameList" [value]="hourName">{{ hourName }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    
+                    <div class="monthName">
+                      <mat-form-field>
+                        <mat-label>Select Month name:</mat-label>
+                        <mat-select [formControl]="selectedMonthNameControl" >
+                          <mat-option value="" disabled>Select MonthName</mat-option>
+                          <mat-option *ngFor="let monthName of monthNameList" [value]="monthName">{{ monthName }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div> 
+                    <div>
+                    <button mat-raised-button color="primary"class="btn btn-primary mr-2" style="background-color: #9155fd;  border-color: #9155fd;border-radius: 12px; width: fit-content; margin-left: 20px;" (click)="applyFilters()">Apply Filters</button>
+                    <button type="button" class="btn btn-light" style=" border-color: #9155fd;border-radius: 12px; width: fit-content; margin-left: 20px; margin-top: 5px;"(click)="clearFilters()">Clear</button>
+
                   </div>
-                  
+                  </div>
                   <div>
                   </div>
-                  
                  </div>
                             
                
               </div>
             </div>
            
-            
-
-            <div class="row  mt-3">
+           <br>
+           <br>
+           <br>
+            <div class="row  mt-4">
               
               <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
                 <div class="card shadow-sm">
@@ -143,152 +219,68 @@
                     <!-- dash.component.html -->
                     <div class="d-flex flex-column align-items-center justify-content-center">
                       <div class="d-flex align-items-center">
-                        <h4 class="card-title mb-0 mr-2">Total Number : </h4>
+                        <h4 class="card-title mb-0 mr-2">Total employees : </h4>
                       </div>
                       <h4 class="card-title mb-0 mr-2">{{ totalEmployees }}</h4>
-                      <img src="/assets/back/images/employees.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
+                      <img src="/assets/back/images/p1.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
                     </div>
-                  
-              
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <!-- dash.component.html -->
+                    <div class="d-flex flex-column align-items-center justify-content-center">
+                      <div class="d-flex align-items-center">
+                        <h4 class="card-title mb-0 mr-2">  Staff Enter : </h4>
+                      </div>
+                      <h4 class="card-title mb-0 mr-2">{{ totalVisitors }}</h4>
+                      <img src="/assets/back/images/p2.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
+                    </div>
+                  </div>
+                </div>
                 
-              
-            
-              
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="d-flex justify-content-between mb-md-5 mt-3">
-                              
-
-
-                            </div>
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <!-- dash.component.html -->
-                    <div class="d-flex flex-column align-items-center justify-content-center">
-                      <div class="d-flex align-items-center">
-                        <h4 class="card-title mb-0 mr-2"> Number V : </h4>
-                      </div>
-                      <h4 class="card-title mb-0 mr-2">{{ visitorCountByWeek }}</h4>
-                      <img src="/assets/back/images/employees.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="d-flex justify-content-between mb-md-5 mt-3">
-                              
-
-
-                            </div>
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <!-- dash.component.html -->
                     <div class="d-flex flex-column align-items-center justify-content-center">
                       <div class="d-flex align-items-center">
-                        <h4 class="card-title mb-0 mr-2"> Number V : </h4>
+                        <h4 class="card-title mb-0 mr-2">  Staff Out :</h4>
                       </div>
-                      <h4 class="card-title mb-0 mr-2">{{ visitorCountByWeek }}</h4>
-                      <img src="/assets/back/images/employees.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="d-flex justify-content-between mb-md-5 mt-3">
-                              
-
-
-                            </div>
-                            
-                          </div>
-                        </div>
-                      </div>
+                      <h4 class="card-title mb-0 mr-2">{{ staffOut }}</h4>
+                      <img src="/assets/back/images/p3.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-3 d-flex grid-margin" style="width: 200px; height: 170px;">
+              <div class="col-xl-3 d-flex grid-margin" style="width: 300px; height: 170px;">
                 <div class="card shadow-sm">
                   <div class="card-body">
-                    <!-- dash.component.html -->
                     <div class="d-flex flex-column align-items-center justify-content-center">
                       <div class="d-flex align-items-center">
-                        <h4 class="card-title mb-0 mr-2"> Number V : </h4>
+                        <h4 class="card-title mb-0 mr-2"> Entry Time : </h4>
                       </div>
-                      <h4 class="card-title mb-0 mr-2">{{ visitorCountByWeek }}</h4>
-                      <img src="/assets/back/images/employees.png" alt="Image" class="img-fluid mt-2" style="max-width: 50px; max-height: 50px;" />
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="d-flex justify-content-between mb-md-5 mt-3">
-                              
-
-
-                            </div>
-                            
-                          </div>
-                        </div>
+                      <h4 class="card-title mb-0 mr-2">{{ earliestArrivalTime }}</h4>
+                      <div class="d-flex align-items-center">
+                        <h4 class="card-title mb-0 mr-2"> Leaving Time : </h4>
                       </div>
+                      <h4 class="card-title mb-0 mr-2">{{ earliestLeavingTime }}</h4>
+                      <img src="/assets/back/images/p4.png" alt="Image" class="img-fluid mt-2" style="max-width: 30px; max-height: 30px;" />
                     </div>
                   </div>
                 </div>
               </div>
+
             <div class="row">
-             
               <div class="col-xl-6 d-flex grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex flex-wrap justify-content-between">
-                      <h4 class="card-title mb-3">Attendance</h4>
-                      <button type="button" class="btn btn-sm btn-light">Month</button>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="chart-container">
-                          <canvas baseChart
-                          [data]="barChartData"
-                          [options]="barChartOptions"
-                          [plugins]="barChartPlugins"
-                          [legend]="barChartLegend"
-                          [type]="'bar'">
-                          
-                  </canvas>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-xl-6 d-flex grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex flex-wrap justify-content-between">
-                      <h4 class="card-title mb-3">S</h4>
-                      <button type="button" class="btn btn-sm btn-light">Month</button>
+                      <h4 class="card-title mb-3">Line Chart :</h4>
                     </div>
                     <div class="row">
                       <div class="col-12">
@@ -301,81 +293,111 @@
                                   [type]="lineChartType">
                           </canvas>
                         </div>
-                        
-                        
                       </div>
+                    </div>
+                    <div class="name col-xl-3">
+                      <mat-form-field>
+                        <mat-label>Select Method:</mat-label>
+                        <mat-select [(ngModel)]="selectedMethodL">
+                          <mat-option value="" disabled>Select a method</mat-option>
+                          <mat-option *ngFor="let method of methodLineList" [value]="method">{{ method }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <button mat-raised-button color="primary" class="btn btn-primary mr-2" style="background-color: #9155fd; border-color: #9155fd; border-radius: 12px;" (click)="applyChartLine()">Apply</button>
                     </div>
                   </div>
                 </div>
               </div>
-             
-              <div class="col-xl-6 d-flex grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex flex-wrap justify-content-between">
-                      <h4 class="card-title mb-3">Sales Analytics</h4>
-                      <button type="button" class="btn btn-sm btn-light">Month</button>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="chart-container">
-                          <canvas id="doughnutChart" baseChart width="400" height="200"
-                          [datasets]="pieChartData"
-                          [labels]="pieChartLabels"
-                          [type]="pieChartType" 
-                          [options]="pieChartOptions"
-                          [plugins]="pieChartPlugins"
-                          [legend]="pieChartLegend">
-                          </canvas>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-
-
-
-              <div class="col-xl-6 d-flex grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex flex-wrap justify-content-between">
-                      <h4 class="card-title mb-3">Sales Analytics</h4>
-                      <button type="button" class="btn btn-sm btn-light">Month</button>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="chart-container">
-                          <canvas id="doughnutChart" baseChart width="400" height="200"
-                          [datasets]="pieChartData"
-                          [labels]="pieChartLabels"
-                          [type]="pieChartType" 
-                          [options]="pieChartOptions"
-                          [plugins]="pieChartPlugins"
-                          [legend]="pieChartLegend">
-                          </canvas>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-             
             
               <div class="col-xl-6 d-flex grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex flex-wrap justify-content-between">
-                      <h4 class="card-title mb-3">Distribution of employees By Area :</h4>
+                      <h4 class="card-title mb-3">Pie Chart :</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="chart-container">
+                          <canvas baseChart width="450" height="300"
+                          [type]="'pie'"
+                          [datasets]="pieChartDatasets"
+                          [labels]="pieChartLabels"
+                          [options]="pieChartOptions"
+                          [plugins]="pieChartPlugins"
+                          [legend]="pieChartLegend">
+                        </canvas>
+                  
+
+                        </div>
+                        </div>
+                      </div>
+                      <div class="name col-xl-3">
+                        <mat-form-field>
+                          <mat-label>Select Method:</mat-label>
+                          <mat-select [(ngModel)]="selectedMethodPie">
+                            <mat-option value="" disabled>Select a method</mat-option>
+                            <mat-option *ngFor="let method of methodPieList" [value]="method">{{ method }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" class="btn btn-primary mr-2" style="background-color: #9155fd; border-color: #9155fd; border-radius: 12px;" (click)="applyChartPie()">Apply</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 d-flex grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="card-title mb-3">Bar Chart :</h4>
+                    
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="chart-container">
+                          <canvas  baseChart width="450" height="300"
+                          [data]="barChartData"
+                          [options]="barChartOptions"
+                          [plugins]="barChartPlugins"
+                          [legend]="barChartLegend"
+                          [type]="'bar'">
+                          
+                  </canvas>
+                  
+                        </div>
+                      </div>
+                    </div>
+                    <div class="name col-xl-3 " >
+                      <mat-form-field>
+                        <mat-label>Select Method:</mat-label>
+  <mat-select [(ngModel)]="selectedMethod">
+    <mat-option value="" disabled>Select a method</mat-option>
+    <mat-option *ngFor="let method of methodList" [value]="method">{{ method }}</mat-option>
+  </mat-select>
+                      </mat-form-field>
+                      <button mat-raised-button color="primary"class="btn btn-primary mr-2"
+                       style="background-color: #9155fd;  border-color: #9155fd;border-radius: 12px;" (click)="applyChart()">Apply </button>
+
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+
+              <div class="col-xl-6 d-flex grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="card-title mb-3">Doughnut Chart:</h4>
                       
                     </div>
                     <div class="row">
                       <div class="col-12">
                         <div class="chart-container">
                           
-                          <canvas baseChart width="400" height="200"
+                          <canvas baseChart width="500" height="300"
                           [labels]="doughnutChartLabels"
                           [datasets]="doughnutChartDatasets"
                           [options]="doughnutChartOptions"
@@ -385,6 +407,16 @@
                          
                         </div>
                         </div>
+                      </div>
+                      <div class="name col-xl-3">
+                        <mat-form-field>
+                          <mat-label>Select Method:</mat-label>
+                          <mat-select [(ngModel)]="selectedMethodD">
+                            <mat-option value="" disabled>Select a method</mat-option>
+                            <mat-option *ngFor="let method of methodDList" [value]="method">{{ method }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" class="btn btn-primary mr-2" style="background-color: #9155fd; border-color: #9155fd; border-radius: 12px;" (click)="applyChartD()">Apply</button>
                       </div>
                     </div>
                   </div>

@@ -7,6 +7,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 
 import { EditComponent } from 'src/app/back/edit/edit.component';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -20,22 +22,59 @@ export class ListComponent implements OnInit {
   constructor(
     private listService: ListService,
     private router: Router,
-    private matDialog: MatDialog // Inject MatDialog
+    private matDialog: MatDialog,
+    private toastr: ToastrService,private authService: AuthService
+
   ) {}
   
 
-
-  ngOnInit(): void {
-    this.listService.listMembers().subscribe(
-      (data: any[]) => {
-        this.members = data;
-      },
-      (error) => {
-        console.error("Error fetching member data:", error);
+  
+    displayedMembers: any[] = []; // Members to display on the current page
+    pageSize: number = 5; // Number of members to display per page
+    currentPage: number = 1; // Current page number
+    totalPages: number = 3; // Total number of pages
+    pages: number[] = []; // Array of page numbers for pagination
+  
+    ngOnInit(): void {
+      this.listService.listMembers().subscribe(
+        (data: any[]) => {
+          this.members = data;
+          this.calculatePagination();
+        },
+        (error) => {
+          console.error("Error fetching member data:", error);
+        }
+      );
+    }
+  
+    calculatePagination(): void {
+      this.totalPages = Math.ceil(this.members.length / this.pageSize);
+      this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+      this.updateDisplayedMembers();
+    }
+  
+    updateDisplayedMembers(): void {
+      const startIndex = (this.currentPage - 1) * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      this.displayedMembers = this.members.slice(startIndex, endIndex);
+    }
+  
+    goToPage(page: number): void {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+        this.updateDisplayedMembers();
       }
-    );
+    }
+  
+
+  getImageUrl(imageName: string): string {
+    const imageUrl = `assets/back/images/${imageName}`;
+    console.log('Generated Image URL:', imageUrl);
+    return imageUrl;
   }
   
+  
+
   deleteMember(member: any): void {
     const confirmDelete = confirm(`Are you sure you want to delete ${member.firstName} ${member.lastName}?`);
     if (confirmDelete) {
@@ -43,14 +82,16 @@ export class ListComponent implements OnInit {
         (response) => {
           // Remove the deleted member from the local array
           this.members = this.members.filter(m => m !== member);
-          console.log(`Deleted ${member.firstName} ${member.lastName}`);
+          this.toastr.success('Member deleted successfully', 'Success');
         },
         (error) => {
           console.error("Error deleting member:", error);
+          this.toastr.error('Failed to delete member', 'Error');
         }
       );
     }
   }
+  
   editMember(member: any): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -70,7 +111,22 @@ export class ListComponent implements OnInit {
       }
     });
   }
-  
+  logout() {
+    this.authService.logout().subscribe(
+      () => {
+        // Clear any local user data or tokens here
+        // For example, you can remove user data from local storage
+        localStorage.removeItem('currentUser');
+
+        // Redirect to the login page or another appropriate page
+        this.router.navigate(['/login']);
+      },
+      error => {
+        console.error('Logout error:', error);
+        // Handle error, show a message, etc.
+      }
+    );
+  }
   
   
   }

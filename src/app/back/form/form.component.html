@@ -1,22 +1,33 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
   
-  
-  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
   <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="/assets/back/images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/back/images/logo-mini.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo" href="index.html">
+            <div style="display: flex; align-items: center;">
+              <img src="/assets/back/images/TeamTrack1.png" style="width: 90px; margin-bottom: 20px;" alt="logo">
+              <h1 style="margin-left: 10px; color: #7A45B1; margin-bottom: 20px;">TeamTrack</h1>
+            </div>
+          </a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/back/images/TeamTrack1.png" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
         </div>
-     
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas" onclick="toggleOffcanvas()">
-          <span class="typcn typcn-th-menu"></span>
-        </button>
+
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+          <button class="btn btn-primary mr-2" style="background-color: #9155fd; border-color: #9155fd; border-radius: 12px; width: fit-content;" (click)="logout()">Logout</button>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+      
+        
         
       </nav>
       <!-- partial -->
@@ -91,20 +102,20 @@
        
       </nav>
       
-      <div class="col-12 grid-margin ">
-        <div class="card cardC">
-          <div class="card-body">
-            <h4 class="card-title">Horizontal Two column</h4>
-            <form class="form-sample" [formGroup]="memberForm" (ngSubmit)="onSubmit()">
-              <p class="card-description">
-                Personal info
-              </p>
+      <div class="col-12 grid-margin " style="background-color: #f4f5fa;">
+        <div class="card cardC" style="margin-top: 50px; margin-left: 50px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+          <div class="card-body" >
+            <h1 class="card-title" style="font-size: x-large;text-align: center; "> Personal Information </h1>
+            <br>
+            <form class="row g-3 needs-validation" [formGroup]="memberForm" (ngSubmit)="onSubmit()" novalidate>
+            
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">First Name</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" formControlName="firstName"/>
+                      <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" required/>
+                      <div class="invalid-feedback">Please enter the first name</div>
                     </div>
                   </div>
                 </div>
@@ -112,7 +123,9 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Last Name</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" formControlName="lastName"/>
+                     
+                     <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name" required/>
+                     <div class="invalid-feedback">Please enter the last name</div>
                     </div>
                   </div>
                 </div>
@@ -133,7 +146,8 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Date of Birth</label>
                     <div class="col-sm-9">
-                      <input class="form-control" placeholder="dd/mm/yyyy"/>
+                      <input class="form-control" formControlName="birthday" placeholder="YYYY-MM-DD" required/>
+                      <div class="invalid-feedback">Please enter the date of birth in the correct format</div>
                     </div>
                   </div>
                 </div>
@@ -144,7 +158,9 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Address </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" formControlName="address" />
+                     
+                     <input type="text" class="form-control" formControlName="address" placeholder=" Address" required/>
+                     <div class="invalid-feedback">Please enter the Address</div>
                     </div>
                   </div>
                 </div>
@@ -152,7 +168,8 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Email</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" formControlName="email" />
+                      <input type="text" class="form-control" formControlName="email" placeholder="exp@gmail.com" required/>
+                      <div class="invalid-feedback">Please enter the email in the correct format</div>
                     </div>
                   </div>
                 </div>
@@ -163,7 +180,8 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">phone</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" formControlName="phone" />
+                      <input type="text" class="form-control" formControlName="phone" placeholder="******** " required/>
+                      <div class="invalid-feedback">Please enter the phone number </div>
                     </div>
                   </div>
                 </div>
@@ -171,7 +189,8 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label"> Zone</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" formControlName="zone"/>
+                      <input type="text" class="form-control" formControlName="zone" placeholder=" Zone" required/>
+                      <div class="invalid-feedback">Please enter the zone</div>
                     </div>
                   </div>
                 </div>
@@ -182,8 +201,10 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label"> Hire Date</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control"formControlName="hireDate" />
-                    </div>
+                     
+                   <input type="text" class="form-control"formControlName="hireDate" placeholder=" YYYY-MM-DD" required/>
+                   <div class="invalid-feedback">Please enter the hire date in the correct format</div>
+                  </div>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -191,7 +212,7 @@
                     <label class="col-sm-3 col-form-label"> Image</label>
                     <div class="form-group">
                           <input type="file"  accept="image/*" (change)="onSelectFile($event)">
-                          <img [src]="imgURL" height="20" *ngIf="imgURL">
+                          <img [src]="imgURL" height="100" *ngIf="imgURL">
                   </div>
                     
                   </div>
@@ -199,14 +220,38 @@
 
 
               </div>
-              <button type="submit" class="btn btn-primary mr-2">Submit</button>
-              <button type="button" class="btn btn-light" (click)="memberForm.reset()">Cancel</button>
+              <button type="submit" class="btn btn-primary mr-2" style="background-color: #9155fd;  border-color: #9155fd;border-radius: 12px; width: fit-content;">Submit</button>
+              <button type="button" class="btn btn-light" style="width: fit-content;  border-color: #9155fd;border-radius: 12px;" (click)="memberForm.reset()">Cancel</button>
             </form>
           </div>
         </div>
       </div>
       
       </div>
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+
+      </script>
       <!-- page-body-wrapper ends -->
    
     <!-- container-scroller -->

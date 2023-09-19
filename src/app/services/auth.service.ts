@@ -16,17 +16,11 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/signin`, { username, password })
   }
-  // .pipe(
-  //   finalize(() => {
-  //     console.log('Navigating to dashboard...');
-  //     this.router.navigate(['/dashboard']);
-  //     this.jwtToken = ;
-  //     console.log('JWT Token:', this.jwtToken); 
-  //   })
-  // );
-  
+
   getJwtToken(): string | null {
     return this.jwtToken;
   }
-  
+  logout(): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/logout`, {});
+  }
 }

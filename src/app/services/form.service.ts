@@ -10,8 +10,9 @@ export class FormService {
 
   constructor(private http: HttpClient) { }
 
-  addMember(memberData: any): Observable<any> {
-    const url = `${this.apiUrl}/members`; // 
+  addMember(memberData: FormData): Observable<any> {
+    const url = `${this.apiUrl}/members`;
     return this.http.post(url, memberData);
   }
+  
 }

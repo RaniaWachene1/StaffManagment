@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.*;
@@ -29,10 +30,7 @@ public class Staffs {
     private String Area;
     private String Label;
     private String PictureURL;
-
-
     private String Timestamp;
-
     private String  Hour;
     private String  Day;
     private String DayName;
@@ -50,6 +48,9 @@ public class Staffs {
     private String EventType;
     private Date Created;
     private int __v;
+    @DBRef
+    private User user;
+    private long attendanceCount;
 
     // Getters and setters...
 }

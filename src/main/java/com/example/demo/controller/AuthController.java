@@ -104,5 +104,17 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser() {
+        // Clear JWT token from the browser by setting an empty token and expiration in the past
+        ResponseCookie jwtCookie = ResponseCookie.from("jwt", "")
+                .httpOnly(true)
+                .secure(true) // Make sure to configure this appropriately
+                .maxAge(0)
+                .path("/")
+                .build();
 
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .body(new MessageResponse("Logged out successfully"));
+    }
 }

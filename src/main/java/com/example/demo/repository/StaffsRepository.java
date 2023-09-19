@@ -11,7 +11,20 @@ import java.util.Map;
 
 @Repository
 public interface StaffsRepository extends MongoRepository<Staffs, String> {
+    @Query("{'Hour' : ?0}")
+    List<Staffs> findByHour(String hourName);
+    @Query("{'Week' : ?0}")
+    List<Staffs> findByWeek(String week);
+    @Query("{'Year' : ?0}")
+    List<Staffs> findByYear(String year);
+    @Query("{'Month' : ?0}")
+    List<Staffs> findByMonth(String month);
+    @Query("{'MonthName' : ?0}")
 
+    List<Staffs> findByMonthName(String monthName);
+    @Query("{'HourName' : ?0}")
+
+    List<Staffs> findByHourName(String hourName);
     @Query("{'FirstName' : ?0}")
     List<Staffs> findByFirstName(String firstName);
 
@@ -25,6 +38,8 @@ public interface StaffsRepository extends MongoRepository<Staffs, String> {
     @Query(value = "{}", fields = "{'FirstName': 1, '_id': 0}")
     List<Staffs> findDistinctFirstNames();
 
+    List<Staffs> findByFirstNameAndVisitor(String firstName, String visitor);
+
     @Query("{'Area': ?0}")
     long countByArea(String area);
 
@@ -33,6 +48,5 @@ public interface StaffsRepository extends MongoRepository<Staffs, String> {
     List<String> findDistinctFirstNamess();
 
 
-
-
+    List<Staffs> findByDayName(String dayName);
 }

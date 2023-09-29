@@ -10,13 +10,13 @@ BackEnd : Spring Boot
 Data base : MongoDB
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=angular" />
+    <img src="https://skillicons.dev/icons?i=angular&theme=light" />
   </a>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=spring" />
+    <img src="https://skillicons.dev/icons?i=spring&theme=light" />
   </a>
    <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=mongodb" />
+    <img src="https://skillicons.dev/icons?i=mongodb&theme=light" />
   </a>
 </p>
 

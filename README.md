@@ -1,4 +1,5 @@
 # TeamTrack
+![visitor badge](https://visitor-badge.laobi.icu/badge?page_id=jwenjian.visitor-badge)
 Plateforme Décisionnelle avec Caméras Intelligentes pour la Gestion des Employés en Retail
 # Demo
 

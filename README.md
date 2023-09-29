@@ -5,7 +5,9 @@ Plateforme Décisionnelle avec Caméras Intelligentes pour la Gestion des Employ
 
 https://github.com/RaniaWachene1/StaffManagment/assets/125664751/66787f28-623e-43f4-9fe0-8ce239eb43d4
 # Technologies Used :
-FrontEnd : Angular
+FrontEnd : Angular   <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=angular&theme=light" />
+  </a>
 BackEnd : Spring Boot
 Data base : MongoDB
 <p align="center">
